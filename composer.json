@@ -1,5 +1,5 @@
 {
-    "name": "respinar/contao-cta-bundle",
+    "name": "respinar/contao-calltoaction",
     "description": "A Call to action bundle for Contao CMS",
     "keywords": ["contao", "CTA", "bundle"],
     "type": "contao-bundle",
@@ -13,8 +13,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/respinar/contao-cta-bundle/issues",
-        "source": "https://github.com/respinar/contao-cta-bundle"
+        "issues": "https://github.com/respinar/contao-calltoaction/issues",
+        "source": "https://github.com/respinar/contao-calltoaction"
     },
     "require": {
         "php": "^8.0",
