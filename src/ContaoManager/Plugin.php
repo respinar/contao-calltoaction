@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license MIT
  */
 
-namespace Respinar\ContaoCtaBundle\ContaoManager;
+namespace Respinar\CtaBundle\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
@@ -23,7 +23,7 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser): array
     {
         return [
-            BundleConfig::create(RespinarContaoCtaBundle::class)
+            BundleConfig::create(RespinarCtaBundle::class)
                 ->setLoadAfter([ContaoCoreBundle::class]),
         ];
     }
