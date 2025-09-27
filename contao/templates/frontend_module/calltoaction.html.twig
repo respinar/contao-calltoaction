@@ -1,6 +1,6 @@
 {% extends "@Contao/frontend_module/_base.html.twig" %}
 {% block inner %}
-    <a href="{{ ctaUrl }}" title="{{ ctaTitle }}">
+    <a href="{{ ctaUrl|insert_tag_raw }}" title="{{ ctaTitle }}">
         <span>{{ ctaText }}</span>
     </a>
 {% endblock %}
