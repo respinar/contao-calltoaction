@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Respinar\ContaoCtaBundle\Controller\FrontendModule;
+namespace Respinar\CtaBundle\Controller\FrontendModule;
 
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsFrontendModule;
@@ -24,14 +24,14 @@ class CtaController extends AbstractFrontendModuleController
             return new Response();
         }
 
-        $ctaData = [       
+        $ctaData = [
             'title' => null,
             'url' => null,
             'text' => null,
         ];
 
         while ($page !== null) {
-    
+
             // Set only if not already set and the page value is non-empty
             if (empty($ctaData['title']) && !empty(trim((string)$page->ctaTitle))) {
                 $ctaData['title'] = $page->ctaTitle;
@@ -49,7 +49,7 @@ class CtaController extends AbstractFrontendModuleController
             if (!empty($ctaData['title']) && !empty($ctaData['url']) && !empty($ctaData['text'])) {
                 break;
             }
-    
+
             // If all values are found, break
             if ($ctaData['title'] && $ctaData['url'] && $ctaData['text']) {
                 break;
@@ -65,7 +65,7 @@ class CtaController extends AbstractFrontendModuleController
         $template->set('ctaText', $ctaData['text'] ?? $model->ctaText);
 
         $template->set('searchable', False);
-        
+
         return $template->getResponse();
     }
 
@@ -75,16 +75,16 @@ class CtaController extends AbstractFrontendModuleController
         while ($page !== null) {
             $visibility = $page->ctaVisibility;
 
-            if ($visibility === 'show') {          
+            if ($visibility === 'show') {
                 return true;
             }
 
-            if ($visibility === 'hide') {          
+            if ($visibility === 'hide') {
                 return false;
             }
 
             $page = PageModel::findById($page->pid);
-        }      
+        }
 
         return $model->ctaIsVisible;
     }
