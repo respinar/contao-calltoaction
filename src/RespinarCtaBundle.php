@@ -10,13 +10,13 @@ declare(strict_types=1);
  * @license MIT
  */
 
-namespace Respinar\ContaoCtaBundle;
+namespace Respinar\CtaBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class RespinarContaoCtaBundle extends AbstractBundle
+class RespinarCtaBundle extends AbstractBundle
 {
     public function loadExtension(
         array $config, 
