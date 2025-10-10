@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Respinar\CtaBundle\Controller\FrontendModule;
+namespace Respinar\CalltoactionBundle\Controller\FrontendModule;
 
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsFrontendModule;
