@@ -25,10 +25,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Respinar\\CtaBundle\\": "src/"
+            "Respinar\\CalltoactionBundle\\": "src/"
         }
     },    
     "extra": {
-        "contao-manager-plugin": "Respinar\\CtaBundle\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "Respinar\\CalltoactionBundle\\ContaoManager\\Plugin"
     }
 }
