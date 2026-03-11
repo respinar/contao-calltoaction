@@ -12,7 +12,7 @@ use Contao\PageModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsFrontendModule(category: "miscellaneous", type: "calltoaction")]
+#[AsFrontendModule(type: 'calltoaction', category: 'miscellaneous')]
 class CalltoactionController extends AbstractFrontendModuleController
 {
     protected function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
@@ -30,18 +30,17 @@ class CalltoactionController extends AbstractFrontendModuleController
             'text' => null,
         ];
 
-        while ($page !== null) {
-
+        while (null !== $page) {
             // Set only if not already set and the page value is non-empty
-            if (empty($ctaData['title']) && !empty(trim((string)$page->ctaTitle))) {
+            if (empty($ctaData['title']) && !\in_array(trim((string) $page->ctaTitle), ['', '0'], true)) {
                 $ctaData['title'] = $page->ctaTitle;
             }
 
-            if (empty($ctaData['url']) && !empty(trim((string)$page->ctaUrl))) {
+            if (empty($ctaData['url']) && !\in_array(trim((string) $page->ctaUrl), ['', '0'], true)) {
                 $ctaData['url'] = $page->ctaUrl;
             }
 
-            if (empty($ctaData['text']) && !empty(trim((string)$page->ctaText))) {
+            if (empty($ctaData['text']) && !\in_array(trim((string) $page->ctaText), ['', '0'], true)) {
                 $ctaData['text'] = $page->ctaText;
             }
 
@@ -64,22 +63,21 @@ class CalltoactionController extends AbstractFrontendModuleController
         $template->set('ctaUrl', $ctaData['url'] ?? $model->ctaUrl);
         $template->set('ctaText', $ctaData['text'] ?? $model->ctaText);
 
-        $template->set('searchable', False);
+        $template->set('searchable', false);
 
         return $template->getResponse();
     }
 
     private function isCtaVisible(PageModel $page, ModuleModel $model): bool
     {
-
-        while ($page !== null) {
+        while (null !== $page) {
             $visibility = $page->ctaVisibility;
 
-            if ($visibility === 'show') {
+            if ('show' === $visibility) {
                 return true;
             }
 
-            if ($visibility === 'hide') {
+            if ('hide' === $visibility) {
                 return false;
             }
 
