@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of Contao CTA Bundle.
+ *
+ * (c) Hamid Peywasti
+ *
+ * @license MIT
+ */
+
 namespace Respinar\CalltoactionBundle\Controller\FrontendModule;
 
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;

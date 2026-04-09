@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of Contao CTA Bundle.
+ *
+ * (c) Hamid Peywasti
+ *
+ * @license MIT
+ */
+
 $GLOBALS["TL_DCA"]["tl_module"]["palettes"]["calltoaction"] = '
     {title_legend},name,type;
     {whatsapp_legend},ctaText,ctaIsVisible,ctaUrl,ctaTitle;

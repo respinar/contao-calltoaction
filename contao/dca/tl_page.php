@@ -1,5 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of Contao CTA Bundle.
+ *
+ * (c) Hamid Peywasti
+ *
+ * @license MIT
+ */
+
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 
 PaletteManipulator::create()
