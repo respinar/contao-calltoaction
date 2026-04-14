@@ -25,10 +25,15 @@ class CalltoactionController extends AbstractFrontendModuleController
 {
     protected function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
     {
-        // Check if the current page has CTA fields set
         $page = $this->getPageModel();
 
-        if (!$this->isCtaVisible($page, $model)) {
+        if (null === $page) {
+            return new Response();
+        }
+
+        $trail = $this->getPageTrail($page);
+
+        if (!$this->isCtaVisible($trail, $model)) {
             return new Response();
         }
 
@@ -38,35 +43,24 @@ class CalltoactionController extends AbstractFrontendModuleController
             'text' => null,
         ];
 
-        while (null !== $page) {
-            // Set only if not already set and the page value is non-empty
-            if (empty($ctaData['title']) && !\in_array(trim((string) $page->ctaTitle), ['', '0'], true)) {
-                $ctaData['title'] = $page->ctaTitle;
+        foreach ($trail as $currentPage) {
+            if (empty($ctaData['title']) && !\in_array(trim((string) $currentPage->ctaTitle), ['', '0'], true)) {
+                $ctaData['title'] = $currentPage->ctaTitle;
             }
 
-            if (empty($ctaData['url']) && !\in_array(trim((string) $page->ctaUrl), ['', '0'], true)) {
-                $ctaData['url'] = $page->ctaUrl;
+            if (empty($ctaData['url']) && !\in_array(trim((string) $currentPage->ctaUrl), ['', '0'], true)) {
+                $ctaData['url'] = $currentPage->ctaUrl;
             }
 
-            if (empty($ctaData['text']) && !\in_array(trim((string) $page->ctaText), ['', '0'], true)) {
-                $ctaData['text'] = $page->ctaText;
+            if (empty($ctaData['text']) && !\in_array(trim((string) $currentPage->ctaText), ['', '0'], true)) {
+                $ctaData['text'] = $currentPage->ctaText;
             }
 
-            // If all are filled, break
             if (!empty($ctaData['title']) && !empty($ctaData['url']) && !empty($ctaData['text'])) {
                 break;
             }
-
-            // If all values are found, break
-            if ($ctaData['title'] && $ctaData['url'] && $ctaData['text']) {
-                break;
-            }
-
-            // Move to parent
-            $page = PageModel::findById($page->pid);
         }
 
-        // Assign data to the template
         $template->set('ctaTitle', $ctaData['title'] ?? $model->ctaTitle);
         $template->set('ctaUrl', $ctaData['url'] ?? $model->ctaUrl);
         $template->set('ctaText', $ctaData['text'] ?? $model->ctaText);
@@ -76,9 +70,22 @@ class CalltoactionController extends AbstractFrontendModuleController
         return $template->getResponse();
     }
 
-    private function isCtaVisible(PageModel $page, ModuleModel $model): bool
+    /**
+     * @return array<PageModel>
+     */
+    private function getPageTrail(PageModel $page): array
     {
+        $trail = [];
         while (null !== $page) {
+            $trail[] = $page;
+            $page = PageModel::findById($page->pid);
+        }
+        return $trail;
+    }
+
+    private function isCtaVisible(array $trail, ModuleModel $model): bool
+    {
+        foreach ($trail as $page) {
             $visibility = $page->ctaVisibility;
 
             if ('show' === $visibility) {
@@ -88,10 +95,8 @@ class CalltoactionController extends AbstractFrontendModuleController
             if ('hide' === $visibility) {
                 return false;
             }
-
-            $page = PageModel::findById($page->pid);
         }
 
-        return $model->ctaIsVisible;
+        return (bool) $model->ctaIsVisible;
     }
 }
