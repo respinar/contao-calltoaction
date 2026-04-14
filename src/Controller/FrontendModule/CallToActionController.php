@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 #[AsFrontendModule(type: 'calltoaction', category: 'miscellaneous')]
-class CalltoactionController extends AbstractFrontendModuleController
+class CallToActionController extends AbstractFrontendModuleController
 {
     protected function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
     {
@@ -76,10 +76,12 @@ class CalltoactionController extends AbstractFrontendModuleController
     private function getPageTrail(PageModel $page): array
     {
         $trail = [];
+
         while (null !== $page) {
             $trail[] = $page;
             $page = PageModel::findById($page->pid);
         }
+
         return $trail;
     }
 
