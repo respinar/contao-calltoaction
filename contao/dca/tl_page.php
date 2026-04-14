@@ -41,7 +41,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['ctaUrl'] = [
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 2048, 'dcaPicker' => true, 'tl_class' => 'w50 clr'],
-    'sql' => ['type' => 'string', 'length' => 255, 'default' => ''],
+    'sql' => ['type' => 'string', 'length' => 2048, 'default' => ''],
 ];
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['ctaText'] = [
