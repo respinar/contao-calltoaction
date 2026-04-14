@@ -4,7 +4,7 @@ services:
         autowire: true
         autoconfigure: true    
 
-    Respinar\CalltoactionBundle\:
+    Respinar\CallToActionBundle\:
         resource: ../src/
         exclude: ../src/ContaoManager
 
