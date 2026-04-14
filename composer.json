@@ -26,11 +26,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Respinar\\CalltoactionBundle\\": "src/"
+            "Respinar\\CallToActionBundle\\": "src/"
         }
     },    
     "extra": {
-        "contao-manager-plugin": "Respinar\\CalltoactionBundle\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "Respinar\\CallToActionBundle\\ContaoManager\\Plugin"
     },
     "config": {
         "allow-plugins": {
